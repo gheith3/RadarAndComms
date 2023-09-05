@@ -1,0 +1,14 @@
+﻿
+<Spacer Space="Space" />
+
+<div class="w-100 my-1">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public int Space { get; set; } = 0;
+}

@@ -1,0 +1,20 @@
+﻿<MudPaper Class="rounded-4 rounded-top-0 p-0 fixed-top mud-theme-primary shadow-sm "
+Elevation="0">
+    <div classs="@Css" style="@Style">
+        @ChildContent
+    </div>
+</MudPaper>
+
+@* Style="background: #f5f6ff !important;" *@
+
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string Css { get; set; }
+
+    [Parameter]
+    public string Style { get; set; }
+}

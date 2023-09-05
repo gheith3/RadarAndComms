@@ -1,0 +1,74 @@
+﻿
+<MudText Typo="@Typo.h6"
+         Align="@Align"
+Style="@($"font-size: {GetFontSize()}px; font-weight: {GetFontWeight()};")" Color="@GetColor()" Class="@($"mb-0 pb-0 {CssClass}")">
+    @Text
+    @ChildContent
+</MudText>
+
+@code {
+    [Parameter]
+    public string Text { get; set; } = "";
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public int FontSize { get; set; } = 0;
+
+    [Parameter]
+    public string Weight { get; set; }
+
+    [Parameter]
+    public Color? Color { get; set; }
+
+    [Parameter]
+    public Align Align { get; set; } = Align.Start;
+
+    [Parameter]
+    public string CssClass { get; set; } = "";
+
+    [Parameter]
+    public TextFontWeight FontWeight { get; set; } = TextFontWeight.Title;
+
+   
+    private string GetFontWeight()
+    {
+        
+        return (!string.IsNullOrEmpty(Weight)) ? Weight : FontWeight switch
+        {
+            TextFontWeight.Title => "bold",
+            TextFontWeight.Number => "bold",
+            TextFontWeight.Subtitle => "300",
+            TextFontWeight.Body => "250",
+            _ => "bold"
+        };
+    }
+
+    private int GetFontSize()
+    {
+        
+        return (FontSize > 0) ? FontSize : FontWeight switch
+        {
+            TextFontWeight.Title => 17,
+            TextFontWeight.Subtitle => 16,
+            TextFontWeight.Body => 16,
+            TextFontWeight.Number => 16,
+            _ => 13
+        };
+    }
+
+    private Color GetColor()
+    {
+        return (Color != null) ? Color.Value : FontWeight switch
+        {
+            TextFontWeight.Title => MudBlazor.Color.Dark,
+            TextFontWeight.Subtitle => MudBlazor.Color.Dark,
+            TextFontWeight.Number => MudBlazor.Color.Dark,
+            TextFontWeight.Body => MudBlazor.Color.Inherit,
+            _ => MudBlazor.Color.Inherit
+        };
+    }
+
+  
+}

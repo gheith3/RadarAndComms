@@ -1,0 +1,55 @@
+﻿
+<div class="row w-100 m-0">
+    <CalculatorInput Title="Radar Height (m)" @bind-Input="@RadarHeight" />
+    <CalculatorInput Title="Target Height (m)" @bind-Input="@TargetHeight" />
+</div>
+
+
+<div class="row w-100 m-0">
+    <CalculatorResult Title="D1 (km)" Result="@(GetD1())" />
+    <CalculatorResult Title="D2 (km)" Result="@(GetD2())" />
+    <CalculatorResult Title="LOS dist (km)" Result="@(GetLOSDistKm())" />
+    <CalculatorResult Title="LOS dist (nm)" Result="@(GetLOSDistNm())" />
+</div>
+
+@code {
+    private double _radarHeight = 100;
+    private double _targetHeight = 6400;
+
+    private double RadarHeight
+    {
+        get => _radarHeight; set
+        {
+            _radarHeight = value;
+            StateHasChanged();
+        }
+    }
+    private double TargetHeight
+    {
+        get => _targetHeight; set
+        {
+            _targetHeight = value;
+            StateHasChanged();
+        }
+    }
+
+    private double D1 { get; set; } = 0;
+    private double D2 { get; set; } = 0;
+
+
+
+    private Double GetD1()
+    {
+        D1 = 4.12 * Math.Sqrt(RadarHeight);
+        return D1;
+    }
+    private Double GetD2()
+    {
+        D2 = 4.12 * Math.Sqrt(TargetHeight);
+        return D2;
+    }
+    private Double GetLOSDistKm() => D1 + D2;
+    private Double GetLOSDistNm() => GetLOSDistKm() / 1.85;
+
+
+}

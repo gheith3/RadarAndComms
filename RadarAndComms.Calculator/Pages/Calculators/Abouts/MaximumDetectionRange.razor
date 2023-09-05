@@ -1,0 +1,121 @@
+﻿
+<ContentCard Title="What Is?">
+    <LongTextBlock Title="" Mb="3">
+        The maximum detection range is a critical parameter in radar systems,
+        representing the maximum distance at which a target can be detected reliably.
+        Several factors contribute to the determination of the maximum detection range,
+        including transmitted power (Pt), antenna gains (Gt and Gr),
+        radar cross-section (RCS), number of pulses, frequency (f),
+        minimum detectable signal (MDS) power (Prx), loss (L), and the
+        logarithmic range equation (40logR). This article explores these
+        factors and their relationships to understand the concept of maximum
+        detection range in radar systems.
+    </LongTextBlock>
+</ContentCard>
+
+<ContentCard Title="What Is For?">
+    <ContentCard Title="Transmitted Power, Antenna Gains, and RCS">
+        <LongTextBlock Title="Transmitted Power (Pt)" Mb="3">
+            refers to the power level at which the radar
+            system transmits the signal. It is typically measured in kilowatts (kW)
+            and can also be expressed in decibel-milliwatts (dBm).
+        </LongTextBlock>
+        <LongTextBlock Title="Transmitted Power (Pt in dBm)" Mb="3">
+            To convert transmitted power from kilowatts (kW) to decibel-milliwatts (dBm),
+            the following formula is used:<br />
+            Pt (dBm) = 10 * log10(Pt / 0.001) <br />
+            where Pt is the transmitted power in kilowatts.
+        </LongTextBlock>
+        <LongTextBlock Title="Antenna Gain (Gt and Gr)" Mb="3">
+            Antenna gain measures the directional concentration of radiated or received power.
+            The gain of the transmitting antenna (Gt) and the receiving antenna (Gr)
+            are usually expressed in decibels relative to an isotropic radiator (dBi).
+            Antenna gain accounts for the ability of the antennas to focus signal power
+            in specific directions.
+        </LongTextBlock>
+        <LongTextBlock Title="Radar Cross-Section (RCS)" Mb="3">
+            The radar cross-section (RCS) is a measure of the target's ability to reflect
+            radar signals. It is typically expressed in decibel square meters (dBsm)
+            or decibel-milliwatts (dBm). A higher RCS value indicates a stronger
+            reflection of the radar signal, making the target more detectable.
+        </LongTextBlock>
+    </ContentCard>
+
+    <ContentCard Title="Number of Pulses, Frequency, and MDS Prx">
+        <LongTextBlock Title="Number of Pulses" Mb="3">
+            The number of pulses refers to the quantity of transmitted
+            pulses during radar operation. Increasing the number of pulses
+            can enhance target detection by improving signal-to-noise ratio
+            and reducing the effects of interference.
+        </LongTextBlock>
+
+        <LongTextBlock Title="Frequency (f)" Mb="3">
+            represents the rate at which the radar signal
+            oscillates and is typically measured in gigahertz (GHz). The
+            frequency of the signal affects its propagation characteristics and
+            determines the system's resolution and sensitivity.
+        </LongTextBlock>
+
+        <LongTextBlock Title="Minimum Detectable Signal (MDS) Power (Prx)" Mb="3">
+            The MDS power (Prx) represents the minimum power level that
+            the radar system can detect reliably. It is expressed in
+            decibel-milliwatts (dBm) and depends on factors such as receiver
+            sensitivity, noise figure, and system design.
+        </LongTextBlock>
+
+
+    </ContentCard>
+
+    <ContentCard Title="Loss, 40logR, and Range (R)">
+
+        <LongTextBlock Title="Loss (L)" Mb="3">
+            Loss (L) accounts for the reduction in signal power due to various
+            factors during propagation, including free space loss, atmospheric
+            absorption, and obstacles. Loss is typically expressed in decibels 
+            (dB) and is subtracted from the received power to determine the
+            effective power at a given range.
+        </LongTextBlock>
+
+        <LongTextBlock Title="Logarithmic Range Equation (40logR)" Mb="3">
+            The logarithmic range equation, expressed as 40logR, quantifies the
+            power loss with increasing distance from the radar. It considers
+            the inverse square law and accounts for the spreading of the radar 
+            signal energy in three-dimensional space.
+        </LongTextBlock>
+
+        <LongTextBlock Title="Range (R in km)" Mb="3">
+            Range (R) refers to the distance between the radar system and the 
+            target. It is typically measured in kilometers (km) and plays
+            a crucial role in determining the maximum detection range.
+        </LongTextBlock>
+    </ContentCard>
+
+</ContentCard>
+
+@* <ContentCard Title="Calculation">
+
+    <LongTextBlock Title="" Mb="3">
+
+    </LongTextBlock>
+
+    <LongTextBlock Title="" Mb="3">
+
+    </LongTextBlock>
+</ContentCard> *@
+
+<ContentCard Title="So!!">
+    <LongTextBlock>
+        The maximum detection range in radar systems is influenced by various factors,
+        including transmitted power (Pt), antenna gains (Gt and Gr), 
+        radar cross-section (RCS), number of pulses, frequency (f), 
+        minimum detectable signal (MDS) power (Prx), loss (L),
+        and the logarithmic range equation (40logR). 
+        Understanding the relationships between these 
+        factors helps optimize radar system performance and ensures 
+        reliable target detection at maximum ranges.
+    </LongTextBlock>
+</ContentCard>
+
+@code {
+
+}

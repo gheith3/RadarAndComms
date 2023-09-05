@@ -1,0 +1,18 @@
+﻿<div class="@($"mb-{Mb}")">
+    <AppText FontWeight="TextFontWeight.Title" Text="@Title" />
+
+    <AppText FontWeight="TextFontWeight.Body">
+        @ChildContent
+    </AppText>
+</div>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = "";
+
+    [Parameter]
+    public int Mb { get; set; } = 1;
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

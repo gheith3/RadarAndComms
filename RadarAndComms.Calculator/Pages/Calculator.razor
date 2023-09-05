@@ -1,0 +1,75 @@
+﻿@page "/Calculator/{Title}"
+
+<TopPageNav Title="@(Title.Humanize(LetterCasing.Title))"
+            BackLink="/"
+            NavsList="@Navs"
+            OnNavItemClicked="SetSelectedNav" />
+
+<PageContent>
+    @if (SelectedNav == AppNavsType.About)
+    {
+        @switch (Title)
+        {
+            case "ReceiverSensitivity":
+                <RadarAndComms.Calculator.Pages.Calculators.Abouts.ReceiverSensitivity />
+                break;
+            case "LineOfSightDistance":
+                <RadarAndComms.Calculator.Pages.Calculators.Abouts.LineOfSightDistance />
+                break;
+            case "FreeSpaceLoss":
+                <RadarAndComms.Calculator.Pages.Calculators.Abouts.FreeSpaceLoss />
+                break;
+            case "MaximumDetectionRange":
+                <RadarAndComms.Calculator.Pages.Calculators.Abouts.MaximumDetectionRange />
+                break;
+            default:
+                break;
+        }
+    }
+    @if (SelectedNav == AppNavsType.Calculator)
+    {
+        @switch (Title)
+        {
+            case "ReceiverSensitivity":
+                <RadarAndComms.Calculator.Pages.Calculators.Calc.ReceiverSensitivity />
+                break;
+            case "LineOfSightDistance":
+                <RadarAndComms.Calculator.Pages.Calculators.Calc.LineOfSightDistance />
+                break;
+            case "FreeSpaceLoss":
+                <RadarAndComms.Calculator.Pages.Calculators.Calc.FreeSpaceLoss />
+                break;
+            case "MaximumDetectionRange":
+                <RadarAndComms.Calculator.Pages.Calculators.Calc.MaximumDetectionRange />
+                break;
+            default:
+                break;
+        }
+    }
+</PageContent>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = "";
+
+    private List<AppNavItem> Navs { get; set; } = new()
+    {
+        new()
+        {
+            NavType = AppNavsType.About,
+            Icon = Icons.Material.Outlined.Book,
+        },
+        new()
+        {
+            NavType = AppNavsType.Calculator,
+            Icon = Icons.Material.Outlined.Calculate,
+        }
+    };
+
+    private AppNavsType SelectedNav { get; set; } = AppNavsType.About;
+    private void SetSelectedNav(AppNavsType navType)
+    {
+        SelectedNav = navType;
+        StateHasChanged();
+    }
+}

@@ -1,0 +1,48 @@
+﻿@page "/"
+
+<div class="d-flex justify-content-center align-items-center" style="margin-top: 10vh">
+    <div class="row m-0 w-100">
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <div class="pt-2">
+                    <AppText Text="Calculator" FontSize="20" FontWeight="TextFontWeight.Body" Align="Align.Start" CssClass="text-black-50" />
+                    <AppText Text="Comms & Radar" FontSize="30" Color="Color.Primary" FontWeight="TextFontWeight.Title" Align="Align.Start" />
+                </div>
+                <div>
+                    <MudIconButton Icon="@Icons.Material.Outlined.Info" Size="Size.Medium" Class="text-black-50" OnClick="@(() => NavigationManager.NavigateTo("/About"))" />
+                </div>
+            </div>
+            <br />
+        </div>
+        @foreach (var item in AppUtils.GetCalculators())
+        {
+            <div class="col-6">
+                <ContentCard CssClass="mb-5 text-center" Clicked="@(() => NavigationManager.NavigateTo(item.Link))">
+                    <div>
+
+                        <MudIcon Icon="@item.Icon" Size="Size.Large" Color="Color.Primary" />
+                        <Spacer Space="5" />
+                        <MudDivider />
+                        <Spacer Space="5" />
+
+                        <AppText Text="@item.NamePartOne" FontWeight="TextFontWeight.Title" Align="Align.Center" />
+                        <AppText Text="@item.NamePartTow" FontWeight="TextFontWeight.Title" Align="Align.Center" />
+
+                    </div>
+                </ContentCard>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+@code {
+
+    private void GoTo(string link)
+    {
+        NavigationManager.NavigateTo(link);
+    }
+
+
+}

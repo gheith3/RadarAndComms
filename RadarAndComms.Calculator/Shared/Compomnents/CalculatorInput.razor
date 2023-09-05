@@ -1,0 +1,32 @@
+﻿<div class="@($"col-{Size}")">
+    <ContentCard>
+        <AppText FontSize="14" Align="Align.Center" Color="Color.Dark" Text="@Title" />
+        <MudDivider />
+        <input autofocus min="1" @oninput="UpdateInput" value="@Input" type="Number" class="w-100 form-control calc-input" />
+    </ContentCard>
+</div>
+
+@code {
+    [Parameter]
+    public int Size { get; set; } = 6;
+
+    [Parameter]
+    public string Title { get; set; } = "";
+
+    [Parameter]
+    public double Input { get; set; }
+
+    [Parameter]
+    public EventCallback<double> InputChanged { get; set; }
+
+    private async Task UpdateInput(ChangeEventArgs e)
+    {
+        string value = e?.Value?.ToString();
+        if (string.IsNullOrEmpty(value))
+            value = "0.0";
+
+        double.TryParse(e?.Value?.ToString(), out double res);
+        Input = res;
+        await InputChanged.InvokeAsync(Input);
+    }
+}

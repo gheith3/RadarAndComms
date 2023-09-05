@@ -1,0 +1,88 @@
+﻿<TopFixArea>
+    @if (NavsList == null || !NavsList.Any())
+    {
+        <Spacer Space="10" />
+    }
+    <div class="mt-2">
+
+        <div class="d-flex justify-content-between w-100">
+            <div class="d-flex my-auto mx-2">
+                @if (!string.IsNullOrEmpty(BackLink))
+                {
+
+                    <MudIconButton OnClick="BackToHome" Size="Size.Medium" Class="m-0 p-0 text-white" Icon="@Icons.Material.Outlined.ArrowBack" />
+                    <span style="width: 5px"></span>
+                }
+
+                <AppText  Text="@Title" Weight="200" FontWeight="TextFontWeight.Title" FontSize="20" Color="Color.Surface" Align="Align.Start" />
+
+
+            </div>
+            <div class="d-flex justify-content-end">
+                @ChildContent
+            </div>
+        </div>
+    </div>
+
+    @if (NavsList != null && NavsList.Any())
+    {
+        <Spacer Space="7" /> 
+        <div class="row m-0 w-100">
+            @for (int i = 0; i < NavsList.Count(); i++)
+            {
+                var d = i;
+                <div class="col">
+                    <MudChip OnClick="@(() => ActiveIndex = d)" Variant="@(GetVariant(d))" Class="text-white w-100" Icon="@(NavsList[d].Icon)">
+                        @(NavsList[d].Title)
+                    </MudChip>
+                </div>
+            }
+        </div>
+        <Spacer Space="7" />
+    }
+    else
+    {
+        <Spacer Space="15" />
+    }
+
+
+</TopFixArea>
+
+<Spacer Space="110" />
+
+
+@code {
+    private int _ActiveIndex { get; set; } = 0;
+    private int ActiveIndex
+    {
+        get => _ActiveIndex; set
+        {
+            _ActiveIndex = value;
+            if (NavsList != null)
+                OnNavItemClicked.InvokeAsync(NavsList[value].NavType);
+        }
+    }
+
+    [Parameter]
+    public string Title { get; set; } = "";
+
+    [Parameter]
+    public EventCallback<AppNavsType> OnNavItemClicked { get; set; }
+
+    [Parameter]
+    public string BackLink { get; set; } = "";
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public List<AppNavItem> NavsList { get; set; } = new();
+
+
+   
+
+    private Variant GetVariant(int index) =>  (index == ActiveIndex)  ? Variant.Outlined : Variant.Text;
+   
+    private void BackToHome() => NavigationManager.NavigateTo(BackLink, false, true);
+    private async Task OnNavClick(AppNavItem nav) => await OnNavItemClicked.InvokeAsync(nav.NavType);
+}

@@ -1,0 +1,46 @@
+﻿<div class="w-100" title="@Description" @onclick="OnCardClick">
+    <MudPaper Style="@($"{Style} {_backgroundColor}")" Class="@($"m-0 p-2 mb-2 shadow-sm {_rorderRounded} {CssClass}")" Elevation="1">
+        @if (!string.IsNullOrEmpty(Title))
+        {
+            <MudText Typo="@Typo.h6" Style="color: #abb1cf" Class="mb-0 pb-0">
+                @Title
+            </MudText>
+            <MudDivider />
+        }
+
+        <div title="@Title" class="w-100 cursor-pointer">
+            @ChildContent
+        </div>
+    </MudPaper>
+</div>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = "";
+
+    [Parameter]
+    public string Description { get; set; } = "";
+
+    [Parameter]
+    public string CssClass { get; set; } = "";
+
+    [Parameter]
+    public string Style { get; set; } = "";
+
+    [Parameter]
+    public string BackgroundColor { get; set; } = "";
+    private string _backgroundColor => (string.IsNullOrEmpty(BackgroundColor)) ? "" : $"background: {BackgroundColor};";
+
+    [Parameter]
+    public int BorderRounded { get; set; } = 3;
+    public string _rorderRounded => $"rounded-{BorderRounded}";
+
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public EventCallback Clicked { get; set; }
+
+    private async Task OnCardClick() => await Clicked.InvokeAsync();
+}

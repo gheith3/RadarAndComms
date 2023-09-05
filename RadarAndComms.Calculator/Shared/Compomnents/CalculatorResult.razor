@@ -1,0 +1,18 @@
+﻿<div class="@($"col-{Size}")">
+    <ContentCard>
+        <AppText FontSize="16" Align="Align.Center" Color="Color.Dark" Text="@Title" />
+        <MudDivider />
+        <AppText FontSize="18" Align="Align.Center" Color="Color.Primary" Text="@(Result.ToString("##.###"))" />
+    </ContentCard>
+</div>
+
+@code {
+    [Parameter]
+    public int Size { get; set; } = 6;
+
+    [Parameter]
+    public string Title { get; set; } = "";
+
+    [Parameter]
+    public double Result { get; set; } = 0.0;
+}

@@ -1,0 +1,126 @@
+﻿<div class="row w-100 m-0 justify-content-center">
+    <CalculatorInput Size="6" Title="Pt (kW)" @bind-Input="@PT" />
+    <CalculatorInput Size="6" Title="Gt (dBi)" @bind-Input="@GT" />
+    <CalculatorInput Size="6" Title="Gr (dBi)" @bind-Input="@GR" />
+
+    <CalculatorInput Size="6" Title="RCS (dBms)" @bind-Input="@RCS" />
+    <CalculatorInput Size="6" Title="Number of pulses" @bind-Input="@NumberOfPulses" />
+    <CalculatorInput Size="6" Title="freq (GHz)" @bind-Input="@Freq" />
+
+    <CalculatorInput Size="6" Title="MDS Prx (dBm)" @bind-Input="@MDSPrx" />
+    <CalculatorInput Size="6" Title="Loss (dB)" @bind-Input="@Loss" />
+</div>
+
+<MudDivider />
+
+<div class="row w-100 m-0">
+    <CalculatorResult Size="6" Title="Pt (dBm)" Result="@(GetPT())" />
+
+    <CalculatorResult Size="6" Title="40logR" Result="@(Get40logR())" />
+
+    <CalculatorResult Size="6" Title="R(km)" Result="@(GetR())" />
+</div>
+
+@code {
+    private double _pt = 20;
+    private double PT
+    {
+        get => _pt; set
+        {
+            _pt = value;
+            StateHasChanged();
+        }
+    }
+
+    private double _gt = 35;
+    private double GT
+    {
+        get => _gt; set
+        {
+            _gt = value;
+            StateHasChanged();
+        }
+    }
+
+    private double _gr = 35;
+    private double GR
+    {
+        get => _gr; set
+        {
+            _gr = value;
+            StateHasChanged();
+        }
+    }
+
+    private double _rcs = 3;
+    private double RCS
+    {
+        get => _rcs; set
+        {
+            _rcs = value;
+            StateHasChanged();
+        }
+    }
+
+    private double _numberOfPulses = 4;
+    private double NumberOfPulses
+    {
+        get => _numberOfPulses; set
+        {
+            _numberOfPulses = value;
+            StateHasChanged();
+        }
+    }
+
+    private double _freq = 1.3;
+    private double Freq
+    {
+        get => _freq; set
+        {
+            _freq = value;
+            StateHasChanged();
+        }
+    }
+
+    private double _mdsPrx = -122;
+    private double MDSPrx
+    {
+        get => _mdsPrx; set
+        {
+            _mdsPrx = value;
+            StateHasChanged();
+        }
+    }
+
+    private double _loss = 13;
+    private double Loss
+    {
+        get => _loss; set
+        {
+            _loss = value;
+            StateHasChanged();
+        }
+    }
+
+    private double _resPT = 0;
+    private double _40logR = 0;
+    private double _r = 0;
+
+    private double GetPT()
+    {
+        _resPT = 10 * Math.Log10(PT * 1000 / 0.001);
+        return _resPT;
+    }
+
+    private double Get40logR()
+    {
+        _40logR = _resPT + GT + GR + RCS + 10 * Math.Log10(NumberOfPulses) - 164 - 20 * Math.Log10(Freq) - MDSPrx - Loss;
+        return _40logR;
+    }
+
+    private double GetR()
+    {
+        _r = Math.Pow(10, (_40logR / 40));
+        return _r;
+    }
+}

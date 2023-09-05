@@ -1,0 +1,53 @@
+﻿
+<div class="row w-100 m-0">
+    <CalculatorInput Title="BW (Hz)" @bind-Input="@BW" />
+    <CalculatorInput Title="Noise Figure (dB)" @bind-Input="@NoiseFigure" />
+</div>
+
+
+<div class="row w-100 m-0">
+    <CalculatorResult Title="Noise Floor (dBm)" Result="@(GetNoiseFloor())" />
+    <CalculatorResult Title="Sensitivity (dBm)" Result="@(GetSensitivity())" />
+</div>
+
+@code {
+    private double _bw = 10000000;
+    private double _noiseFigure = 5;
+
+    private double BW
+    {
+        get => _bw; set
+        {
+            _bw = value;
+            StateHasChanged();
+        }
+    }
+    private double NoiseFigure
+    {
+        get => _noiseFigure; set
+        {
+            _noiseFigure = value;
+            StateHasChanged();
+        }
+    }
+
+
+
+    private double _resNoiseFloor { get; set; } = 0;
+    private double _resSensitivity { get; set; } = 0;
+
+
+
+    private Double GetNoiseFloor()
+    {
+        _resNoiseFloor = +-174 + 10 * Math.Log10(BW);
+        return _resNoiseFloor;
+    }
+    private Double GetSensitivity()
+    {
+        _resSensitivity = +_resNoiseFloor + _noiseFigure;
+        return _resSensitivity;
+    }
+
+
+}

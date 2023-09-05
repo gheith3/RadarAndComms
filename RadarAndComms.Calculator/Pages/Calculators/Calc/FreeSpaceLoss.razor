@@ -1,0 +1,116 @@
+﻿<div class="row w-100 m-0 justify-content-center">
+    <CalculatorInput Size="4" Title="Pt (watt)" @bind-Input="@PT" />
+    <CalculatorInput Size="4" Title="Gt (dBi)" @bind-Input="@GT" />
+    <CalculatorInput Size="4" Title="Gr (dBi)" @bind-Input="@GR" />
+
+    <CalculatorInput Size="4" Title="Freq (MHz)" @bind-Input="@Freq" />
+    <CalculatorInput Size="4" Title="R (km)" @bind-Input="@R" />
+
+    <CalculatorInput Size="4" Title="Loss (dB)" @bind-Input="@Loss" />
+    <CalculatorInput Size="4" Title="Sensitivity (dBm)" @bind-Input="@Sensitivity" />
+
+</div>
+
+<MudDivider />
+
+<div class="row w-100 m-0">
+    <CalculatorResult Size="4" Title="Pt (dBm)" Result="@(GetPT())" />
+
+    <CalculatorResult Size="4" Title="Prx (dBm)" Result="@(GetPrx())" />
+
+    <CalculatorResult Size="4" Title="Prx (dBm)" Result="@(GetSNR())" />
+</div>
+
+@code {
+    private double _pt = 50;
+    private double PT
+    {
+        get => _pt; set
+        {
+            _pt = value;
+            StateHasChanged();
+        }
+    }
+
+    private double _gt = 12;
+    private double GT
+    {
+        get => _gt; set
+        {
+            _gt = value;
+            StateHasChanged();
+        }
+    }
+
+    private double _gr = 3;
+    private double GR
+    {
+        get => _gr; set
+        {
+            _gr = value;
+            StateHasChanged();
+        }
+    }
+
+    private double _freq = 970;
+    private double Freq
+    {
+        get => _freq; set
+        {
+            _freq = value;
+            StateHasChanged();
+        }
+    }
+
+    private double _r = 370;
+    private double R
+    {
+        get => _r; set
+        {
+            _r = value;
+            StateHasChanged();
+        }
+    }
+
+    private double _loss = 3;
+    private double Loss
+    {
+        get => _loss; set
+        {
+            _loss = value;
+            StateHasChanged();
+        }
+    }
+
+    private double _sensitivity = -120;
+    private double Sensitivity
+    {
+        get => _sensitivity; set
+        {
+            _sensitivity = value;
+            StateHasChanged();
+        }
+    }
+
+    private double _resPT = 0;
+    private double _resPrx = 0;
+    private double _resSNR = 0;
+
+    private double GetPT()
+    {
+        _resPT = 10 * Math.Log10(PT / 0.001);
+        return _resPT;
+    }
+
+    private double GetPrx()
+    {
+        _resPrx = _resPT + GT + GR - 32 - 20 * Math.Log10(Freq) - 20 * Math.Log10(R) - Loss;
+        return _resPrx;
+    }
+
+    private double GetSNR()
+    {
+        _resSNR = _resPrx - Sensitivity;
+        return _resSNR;
+    }
+}

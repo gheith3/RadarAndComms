@@ -1,0 +1,99 @@
+﻿@page "/About"
+
+<TopPageNav Title="Radar Calculator"
+            BackLink="/"
+            NavsList="@Navs"
+            OnNavItemClicked="SetSelectedNav" />
+
+<PageContent>
+    @if (SelectedNav == AppNavsType.About)
+    {
+
+        <ContentCard Title="About">
+            <LongTextBlock Mb="3">
+                This Communications and Radar Calculator App, developed with the
+                assistance of AI technology, is a powerful tool designed to assist
+                engineers, technicians, and enthusiasts in the field of wireless
+                communications and radar systems. This cutting-edge app combines
+                the expertise of industry professionals with the capabilities of
+                AI to provide a comprehensive and intuitive solution for your
+                calculation and analysis needs.
+            </LongTextBlock>
+
+            <LongTextBlock Title="" Mb="3">
+                With its comprehensive set of tools and intuitive interface,
+                our Communications and Radar Calculator App empowers users to
+                make informed decisions, optimize system performance,
+                and streamline their work in the dynamic field of wireless
+                communication and radar systems.
+            </LongTextBlock>
+
+            <LongTextBlock Title="" Mb="3">
+                The app is continuously updated to incorporate the latest
+                advancements and industry standards, ensuring that you have
+                access to the most accurate and up-to-date calculations for
+                your communication and radar needs.
+            </LongTextBlock>
+        </ContentCard>
+    }
+
+    @if (SelectedNav == AppNavsType.FeedBack)
+    {
+
+        <ContentCard Title="">
+            <LongTextBlock Title="" Mb="3">
+                I value your input and would love to hear your feedback and ideas
+                about our Communications and Radar Calculator App! Your suggestions
+                can help us further improve the app and cater to your specific needs.
+            </LongTextBlock>
+
+            <Spacer Space="15" />
+            <div class="row m-0 w-100 justify-content-center">
+                <div class="col-3">
+                        <di class="mx-auto my-auto">
+                            <a href="https://twitter.com/gheith3" target="_blank">
+                                <TwitterIcon Size="Size.Large" Color="Color.Dark" />
+                            </a>
+                        </di>
+                </div>
+
+                <div class="col-3">
+                        <di class="mx-auto my-auto">
+                            <a href="https://wa.me/96893839229?text=Comms%20And%20Radar%20Calculator%20Feedback" target="_blank">
+                            <WhatAppIcon Size="Size.Large" Color="Color.Dark" />
+                            </a>
+                        </di>
+                </div>
+
+                
+            </div>
+            <Spacer Space="15" />
+        </ContentCard>
+    }
+</PageContent>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = "";
+
+    private List<AppNavItem> Navs { get; set; } = new()
+    {
+        new()
+        {
+            NavType = AppNavsType.About,
+            Icon = Icons.Material.Outlined.Book,
+        },
+        new()
+        {
+            NavType = AppNavsType.FeedBack,
+            Icon = Icons.Material.Outlined.Feedback,
+        }
+    };
+
+    private AppNavsType SelectedNav { get; set; } = AppNavsType.About;
+    private void SetSelectedNav(AppNavsType navType)
+    {
+        SelectedNav = navType;
+        StateHasChanged();
+    }
+}
