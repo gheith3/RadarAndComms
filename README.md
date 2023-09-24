@@ -1,6 +1,8 @@
 
 
-##COMMS AND RADAR CALCULATOR##
+COMMS AND RADAR CALCULATOR
+
+
 GHEITH ALRAWAHI
 
 Supervisor: Assoc. Prof. Munim Zabidi
