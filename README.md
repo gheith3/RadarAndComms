@@ -1,12 +1,5 @@
 COMMS AND RADAR CALCULATOR
 
-Student: GHEITH ALRAWAHI
-
-Supervisor: Assoc. Prof. Munim Zabidi
-
-UNIVERSITI TEKNOLOGI MALAYSIA
-
-[]{#_Toc523259640 .anchor}ABSTRACT
 
 In the age of technological advancement, precision in communication and
 radar systems has become indispensable. This research report details the
@@ -17,49 +10,6 @@ Receiver Sensitivity Analysis, Free Space Loss (FSL) Calculator, and
 Maximum Detection Range Estimation Calculator. These calculators have
 been meticulously designed to provide accurate and efficient solutions
 to challenges in radar technology and communication systems.
-
-TABLE OF CONTENTS
-
-  -----------------------------------------------------------------------
-                          TITLE                   PAGE
-  ----------------------- ----------------------- -----------------------
-
-  -----------------------------------------------------------------------
-
-[ABSTRACT [2](#_Toc523259640)](#_Toc523259640)
-
-[TABLE OF CONTENTS [3](#_Toc145604392)](#_Toc145604392)
-
-[CHAPTER 1 INTRODUCTION [4](#introduction)](#introduction)
-
-[1.1 Introduction [4](#introduction-1)](#introduction-1)
-
-[CHAPTER 2 LITERATURE REVIEW
-[7](#literature-review)](#literature-review)
-
-[2.1 Introduction [7](#introduction-2)](#introduction-2)
-
-[CHAPTER 3 RESEARCH METHODOLOGY
-[9](#research-methodology)](#research-methodology)
-
-[3.1 Introduction [9](#introduction-3)](#introduction-3)
-
-[a- Line of Sight (LOS) Distance
-[9](#line-of-sight-los-distance)](#line-of-sight-los-distance)
-
-[b- Receiver Sensitivity Analysis
-[11](#receiver-sensitivity-analysis)](#receiver-sensitivity-analysis)
-
-[CHAPTER 4 RESULTS [18](#results)](#results)
-
-[[4.1]{dir="rtl"} Analytical Proofs
-[18](#analytical-proofs)](#analytical-proofs)
-
-[CHAPTER 5 CONCLUSION [21](#conclusion)](#conclusion)
-
-[5.1 Conclusion [21](#conclusion-1)](#conclusion-1)
-
-[REFERENCES [22](#_Toc145604405)](#_Toc145604405)
 
 #    INTRODUCTION
 
